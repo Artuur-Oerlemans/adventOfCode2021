@@ -8,6 +8,8 @@ import re
 
 def parse(puzzle_input):
 	"""Parse input"""
+	lines = puzzle_input.splitlines()
+	return [int(s) for s in lines]
 
 
 def parse_line(line):
@@ -22,12 +24,22 @@ def parse_line(line):
 
 def part1(data):
 	"""Solve part 1"""
+	increases = 0
+	for i in range(1, len(data)):
+		if data[i-1] < data[i]:
+			increases += 1
 
-	return "42"
+	return increases
 
 
 def part2(data):
 	"""Solve part 2"""
+	increases = 0
+	for i in range(3, len(data)):
+		if data[i - 3] < data[i]:
+			increases += 1
+
+	return increases
 
 
 def solve(puzzle_input):
