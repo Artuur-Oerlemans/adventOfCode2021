@@ -8,6 +8,7 @@ import re
 
 def parse(puzzle_input):
 	"""Parse input"""
+	return puzzle_input.splitlines()
 
 
 def parse_line(line):
@@ -22,12 +23,39 @@ def parse_line(line):
 
 def part1(data):
 	"""Solve part 1"""
+	regex = r"(\d+)$"
+	horizontal = 0
+	depth = 0
+	aim = 0
+	for line in data:
+		match = re.search(regex, line)
+		if line.startswith("forward"):
+			horizontal += int(match.group(1))
+		elif line.startswith("up"):
+			depth -= int(match.group(1))
+		elif line.startswith("down"):
+			depth += int(match.group(1))
 
-	return "42"
+	return horizontal * depth
 
 
 def part2(data):
 	"""Solve part 2"""
+	regex = r"(\d+)$"
+	horizontal = 0
+	depth = 0
+	aim = 0
+	for line in data:
+		match = re.search(regex, line)
+		if line.startswith("forward"):
+			horizontal += int(match.group(1))
+			depth += aim * int(match.group(1))
+		elif line.startswith("up"):
+			aim -= int(match.group(1))
+		elif line.startswith("down"):
+			aim += int(match.group(1))
+
+	return horizontal * depth
 
 
 def solve(puzzle_input):

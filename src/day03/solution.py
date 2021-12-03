@@ -8,6 +8,7 @@ import re
 
 def parse(puzzle_input):
 	"""Parse input"""
+	return puzzle_input.splitlines()
 
 
 def parse_line(line):
@@ -22,12 +23,74 @@ def parse_line(line):
 
 def part1(data):
 	"""Solve part 1"""
+	width = len(data[0])
 
-	return "42"
+	gamma = ""
+	epsilon = ""
+
+	for i in range(0, width):
+		number1 = 0
+		for line in data:
+			if line[i] == '1':
+				number1 += 1
+		if number1 > len(data) - number1:
+			gamma += "1"
+			epsilon += "0"
+		else:
+			gamma += "0"
+			epsilon += "1"
+	return int(gamma, 2) * int(epsilon, 2)
+
+def oxygen_eliminator(lines, place):
+	number1 = 0
+	result = list()
+	for line in lines:
+		if line[place] == '1':
+			number1 += 1
+
+	for line in lines:
+		if number1 >= len(lines) - number1 and line[place] == '1':
+			result.append(line)
+		elif number1 < len(lines) - number1 and line[place] == '0':
+			result.append(line)
+	return result
+
+
+def co2_eliminator(lines, place):
+	number1 = 0
+	result = list()
+	for line in lines:
+		if line[place] == '1':
+			number1 += 1
+
+	for line in lines:
+		if number1 < len(lines) - number1 and line[place] == '1':
+			result.append(line)
+		elif number1 >= len(lines) - number1 and line[place] == '0':
+			result.append(line)
+	return result
 
 
 def part2(data):
 	"""Solve part 2"""
+	width = len(data[0])
+
+
+	oxygen_lines = data
+	while len(oxygen_lines) > 1:
+		for place in range(0, width):
+			oxygen_lines = oxygen_eliminator(oxygen_lines, place)
+
+	co2_lines = data
+	while len(co2_lines) > 1:
+		for place in range(0, width):
+			if len(co2_lines) > 1:
+				co2_lines = co2_eliminator(co2_lines, place)
+
+	oxygen = oxygen_lines[0]
+	co2 = co2_lines[0]
+
+	return int(oxygen, 2) * int(co2, 2)
 
 
 def solve(puzzle_input):
