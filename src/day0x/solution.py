@@ -8,6 +8,7 @@ import re
 
 def parse(puzzle_input):
 	"""Parse input"""
+	return puzzle_input.splitlines()
 
 
 def parse_line(line):
