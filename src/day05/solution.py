@@ -28,6 +28,7 @@ def part1(data):
 	highest = find_highest(data)
 	the_array = create_2d_array(highest)
 
+	# add some point I started accidentally using the first value of a input coordinate as y and the second as x
 	for line in data:
 		regex = r"^(\d+),(\d+) -> (\d+),(\d+)"
 		match = re.search(regex, line)
@@ -83,6 +84,7 @@ def part2(data):
 	highest = find_highest(data)
 	the_array = create_2d_array(highest)
 
+	# add some point I started accidentally using the first value of a input coordinate as y and the second as x
 	for line in data:
 		regex = r"^(\d+),(\d+) -> (\d+),(\d+)"
 		match = re.search(regex, line)
