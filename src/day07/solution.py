@@ -36,7 +36,7 @@ def part1(data):
     #     if fuel_cost < lowest_fuel_cost:
     #         lowest_fuel_cost = fuel_cost
     # return lowest_fuel_cost
-    
+
     data.sort()
     lowest_position = data[int(len(data)/2)]
     fuel_cost = 0
