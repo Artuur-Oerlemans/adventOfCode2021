@@ -31,10 +31,14 @@ def part2(data):
 	"""Solve part 2"""
 
 
-def solve(puzzle_input):
+def solve(path):
 	"""Solve the puzzle for the given input"""
+	puzzle_input = pathlib.Path(path).read_text().strip()
 	data = parse(puzzle_input)
 	solution1 = part1(data)
+
+	puzzle_input = pathlib.Path(path).read_text().strip()
+	data = parse(puzzle_input)
 	solution2 = part2(data)
 
 	return solution1, solution2
@@ -43,5 +47,5 @@ def solve(puzzle_input):
 if __name__ == "__main__":
 	for path in sys.argv[1:]:
 		print(f"{path}:")
-		solutions = solve(pathlib.Path(path).read_text().strip())
+		solutions = solve(path)
 		print("\n".join(str(solution) for solution in solutions))
