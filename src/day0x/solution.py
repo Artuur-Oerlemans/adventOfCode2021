@@ -1,9 +1,9 @@
-"""AoC [[day]], [[year]][% if puzzle_name %]: [[puzzle_name]][% endif %]"""
 
 # Standard library imports
 import pathlib
 import sys
 import re
+import math
 
 
 def parse(puzzle_input):
