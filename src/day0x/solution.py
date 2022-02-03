@@ -4,6 +4,8 @@ import pathlib
 import sys
 import re
 import math
+import functools
+import time
 
 
 def parse(puzzle_input):
@@ -33,13 +35,20 @@ def part2(data):
 
 def solve(path):
 	"""Solve the puzzle for the given input"""
-	puzzle_input = pathlib.Path(path).read_text().strip()
-	data = parse(puzzle_input)
-	solution1 = part1(data)
 
 	puzzle_input = pathlib.Path(path).read_text().strip()
 	data = parse(puzzle_input)
+	start_1 = time.time()
+	solution1 = part1(data)
+	end_1 = time.time()
+	print("time part 1:", end_1 - start_1)
+
+	puzzle_input = pathlib.Path(path).read_text().strip()
+	data = parse(puzzle_input)
+	start_2 = time.time()
 	solution2 = part2(data)
+	end_2 = time.time()
+	print("time part 2:", end_2 - start_2)
 
 	return solution1, solution2
 
